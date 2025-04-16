@@ -1,20 +1,10 @@
-const { Pool } = require('pg')
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // нужно для Neon
-
-})
-
-
 module.exports = async (req, res) => {
-  console.log('Запрос на /api/db-test принят');
+  console.log('Запрос на /api/test получен');
   try {
-    const result = await pool.query('SELECT "FirstName" FROM "public"."TEST" LIMIT 1');
-    console.log('Запрос выполнен успешно', result.rows);
-    res.status(200).json(result.rows[0]);
+    // Логика работы с базой данных
+    res.status(200).json({ message: "Запрос прошел успешно" });
   } catch (err) {
-    console.error('Ошибка выполнения запроса:', err);
-    res.status(500).json({ error: err.message });
+    console.error('Ошибка в db-test:', err);
+    res.status(500).json({ error: "Ошибка на сервере" });
   }
 };
