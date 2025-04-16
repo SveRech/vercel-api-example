@@ -7,7 +7,7 @@ const pool = new Pool({
 
 module.exports = async (req, res) => {
   try {
-    const result = await pool.query('SELECT "FirstName" FROM "TEST" LIMIT 1')
+    const result = await pool.query('select firstname from public.test')
     res.status(200).json(result.rows[0])
   } catch (err) {
     res.status(500).json({ error: err.message })
