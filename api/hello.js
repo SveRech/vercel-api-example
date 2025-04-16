@@ -10,7 +10,7 @@ const pool = new Pool({
 module.exports = async (req, res) => {
   console.log('Запрос на /api/db-test принят');
   try {
-    const result = await pool.query('SELECT "FirstName" FROM "public"."TEST" LIMIT 1');
+    const result = await pool.query('select firstname from public.test');
     console.log('Запрос выполнен успешно', result.rows);
     res.status(200).json(result.rows[0]);
   } catch (err) {
